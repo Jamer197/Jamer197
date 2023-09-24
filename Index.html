@@ -19,11 +19,15 @@
             const responseElement = document.getElementById('response');
 
             generateButton.addEventListener('click', function () {
+                // Replace 'YOUR_API_KEY' with your actual API key
                 const apiKey = "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";
                 const input = userInput.value;
 
+                // Replace 'YOUR_API_ENDPOINT' with your actual API endpoint
+                const apiEndpoint = '/api/generate_response';
+
                 // Make an AJAX request to your serverless API
-                fetch('/api/generate_response', {
+                fetch(apiEndpoint, {
                     method: 'POST',
                     headers: {
                         'Authorization': 'Bearer ' + apiKey,
