@@ -1,50 +1,32 @@
-<!DOCTYPE html>
+<!Doctype html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Generate Response</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
+<title>Shopping Market</title>
+<style>
+#buyit{
+font-size: 50px;
+}
+#para{
+font-size: 2.5em;
+}
+h1, h2, h4{
+font-size: 3em;
+}
+#Lm{
+font-size: 3em;
+}
+</style>
 </head>
 <body>
-    <input type="text" id="user-input" placeholder="Enter input">
-    <button id="generate-button">Generate Response</button>
-    <div id="response"></div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const generateButton = document.getElementById('generate-button');
-            const userInput = document.getElementById('user-input');
-            const responseElement = document.getElementById('response');
-
-            generateButton.addEventListener('click', function () {
-                const apiKey = "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";
-                const input = userInput.value;
-
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', 'https://api.chatgpt.com/generate_response', true);
-                
-                // Set the request headers
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.setRequestHeader('Authorization', 'Bearer ' + apiKey);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            const data = JSON.parse(xhr.responseText);
-                            responseElement.textContent = data.response;
-                        } else {
-                            console.error('Error:', xhr.statusText);
-                            responseElement.textContent = 'An error occurred.';
-                        }
-                    }
-                };
-
-                // Send the request with JSON data
-                xhr.send(JSON.stringify({ 'input': input }));
-            });
-        });
-    </script>
+<h1>New Samsung Moniter!</h1>
+<h2>$10,000</h2>
+<h4>Description:</h4>
+<p id="para">Black bezzels, 2 usb a ports, and equipped with a Nvidia GeForce RTX 4090 Graphics Card!</p>
+<a href = "https://en.m.wikipedia.org/wiki/GeForce_40_series"><p id="Lm">Learn More</p>
+<img src="https://u-mercari-images.mercdn.net/photos/m60242906267_1.jpg?width=1024&height=1024&format=pjpg&auto=webp&fit=crop&_=1641011089">
+<br /><br />
+<a href="https://youtu.be/xvFZjo5PgG0?si=lexK9iycxLFkAGoS">
+<button id="buyit">Buy</button>
+</a>
 </body>
 </html>
