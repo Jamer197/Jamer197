@@ -19,30 +19,30 @@
             const responseElement = document.getElementById('response');
 
             generateButton.addEventListener('click', function () {
-                // Replace 'YOUR_API_KEY' with your actual API key
                 const apiKey = "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";
                 const input = userInput.value;
 
-                // Replace 'YOUR_API_ENDPOINT' with your actual API endpoint
-                const apiEndpoint = '/api/generate_response';
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/api/generate_response', true);
+                
+                // Set the request headers
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.setRequestHeader('Authorization', 'Bearer ' + apiKey);
 
-                // Make an AJAX request to your serverless API
-                fetch(apiEndpoint, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Bearer ' + apiKey,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ 'input': input })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    responseElement.textContent = data.response;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    responseElement.textContent = 'An error occurred.';
-                });
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            const data = JSON.parse(xhr.responseText);
+                            responseElement.textContent = data.response;
+                        } else {
+                            console.error('Error:', xhr.statusText);
+                            responseElement.textContent = 'An error occurred.';
+                        }
+                    }
+                };
+
+                // Send the request with JSON data
+                xhr.send(JSON.stringify({ 'input': input }));
             });
         });
     </script>
